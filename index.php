@@ -12,8 +12,9 @@ if($dbconn){
 if (isset($_POST['submit'])) {
     $fname = $_POST['firstname'];
     $lname = $_POST['lastname'];
-    $query = pg_query($db_conn, "SELECT * FROM login WHERE email='{$fname}' AND pw='{$lname}'");
-    if ($query) {
+    $query = pg_query($dbconn, "SELECT * FROM login WHERE email='{$fname}' AND pw='{$lname}'");
+    $user= pg_fetch_assoc($query)
+    if ($user) {
 		header('location: a.php');
 		die;
 	}else{
@@ -34,5 +35,12 @@ if (isset($_POST['submit'])) {
             <br><br>
             <input  type="submit"  name="submit">
         </form>
+        <?php
+$result = pg_query($dbconn,"SELECT * FROM login");
+echo "<table>";while($row=pg_fetch_assoc($result)){echo "<tr>";
+echo "<td align='center' width='200'>" . $row['email'] . "</td>";
+echo "<td align='center' width='200'>" . $row['pw'] . "</td>";
+echo "</tr>";}
+echo "</table>";?>
     </body>
 </html>
