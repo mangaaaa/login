@@ -1,54 +1,44 @@
-<?
+<?php
 $host = "ec2-23-22-191-232.compute-1.amazonaws.com";
 $port = "5432";
-$dbname = "d9kre3i7166g8k";
-$user = "gmpgirnharzwij";
-$password = "9747f761fd35e62bfb0e8db8b073598e6f674ee9ae63563a4b6c00ea3e9e11e0"; 
+$dbname = "d90g8rfgki6jb5";
+$user = "ofcrelyobnaqan";
+$password = "cefb489d75ca8fef81ab3054ee3525b3af3857ebdcc77080d96834153e2a6b94"; 
 $connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password} ";
 $dbconn = pg_connect($connection_string);
-if(isset($_POST['submit'])&&!empty($_POST['submit'])){
-    
-    $hashpassword = md5($_POST['pwd']);
-    $sql ="select *from public.login where us = '".pg_escape_string($_POST['email'])."' and pw ='".$hashpassword."'";
-    $data = pg_query($dbconn,$sql); 
-    $login_check = pg_num_rows($data);
-    if($login_check > 0){ 
-        
-        echo "Login Successfully";    
-    }else{
-        
-        echo "Invalid Details";
-    }
+if($_SERVER['REQUEST_METHOD']=='POST'){
+	$username=$_POST['name'];
+	$password=$_POST['pass'];
+	$user= pg_query($conn, "select *from public.login where email = '".pg_escape_string($_POST['email'])."' and pw ='".$hashpassword."'");
+	if ($user) {
+		echo "thành công"
+	}else{
+		echo "Wrong account information";}
+
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>PHP PostgreSQL Registration & Login Example </title>
-  <meta name="keywords" content="PHP,PostgreSQL,Insert,Login">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-<body>
-<div class="container">
-  <h2>Login Here </h2>
-  <form method="post">
-  
-     
+ <html>
+ <head>
+<link rel="icon" href="https://img.icons8.com/fluent/96/000000/data-configuration.png"/>
+ 	<link rel="stylesheet" type="text/css" href="aset/admin.css">
+ 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+ 	<title>Login form</title>
+ </head>
+ <body style="background-image: url(img/login.jpg)">
+ <div class="container">
+  <h2 style="text-align: center; font-size: 30px">Welcome to login form </h2>
+  <form class="was-validated" method="POST">
     <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+      <label for="uname">Username:</label>
+      <input type="text" class="form-control" id="uname" placeholder="Enter username" name="name" required>
     </div>
-    
-     
     <div class="form-group">
       <label for="pwd">Password:</label>
-      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pass" required>
     </div>
-     
-    <input type="submit" name="submit" class="btn btn-primary" value="Submit">
+    <button type="submit" class="btn btn-primary">Login</button>
   </form>
 </div>
-</body>
-</html>
+ </body>
+ </html>
