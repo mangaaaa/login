@@ -13,14 +13,13 @@ if (isset($_POST['submit'])) {
     $fname = $_POST['firstname'];
     $lname = $_POST['lastname'];
     $query = pg_query($db_conn, "SELECT * FROM login WHERE email='{$fname}' AND pw='{$lname}'");
-    $login_check = pg_num_rows($query);
-    if($login_check > 0){ 
-        
-        echo "Login Successfully";    
-    }else{
-        
-        echo "Invalid Details";
-    }
+    $user= pg_fetch_assoc($query)
+    if ($user) {
+		$_SESSION['user']=$user['email'];
+		header('location: a.php');
+		die;
+	}else{
+		echo "Wrong account information";}
 }
 ?>
 <!DOCTYPE  html>
