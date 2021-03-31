@@ -6,16 +6,7 @@ $user = "ofcrelyobnaqan";
 $password = "cefb489d75ca8fef81ab3054ee3525b3af3857ebdcc77080d96834153e2a6b94"; 
 $connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password} ";
 $dbconn = pg_connect($connection_string);
-if($_SERVER['REQUEST_METHOD']=='POST'){
-	$username=$_POST['name'];
-	$password=$_POST['pass'];
-	$user= pg_query($dbconn, "select *from public.login where email='{$username}' AND password='{$password}'");
-	if ($user) {
-		echo "thành công"
-	}else{
-		echo "Wrong account information";}
 
-}
 ?>
 <!DOCTYPE html>
  <html>
