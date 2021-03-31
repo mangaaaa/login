@@ -43,7 +43,7 @@ if($dbconn){
   </form>
   <?php
 if(pg_num_rows($data) >0)
-while($row=pg_fetch_assoc($rs))
+while($row=pg_fetch_assoc($data))
   ?>
   <td><?=$row['email']?></td>
   <td><?=$row['pw']?></td>
