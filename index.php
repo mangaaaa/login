@@ -39,11 +39,11 @@ if (isset($_POST['submit'])) {
         </form>
 	    <?php
 $result = pg_query($dbconn,"SELECT * FROM login");
-while($row=pg_fetch_assoc($result)
+while($row=pg_fetch_assoc($result)}
  ?>
 	    </table>
-<td align='center' width='200'><?=$row['email']?></td>;
-<td align='center' width='200'><?=$row['pw']?></td>;
+<td ><?=$row['email']?></td>;
+<td ><?=$row['pw']?></td>;
 	<?php
 	}
       ?>
