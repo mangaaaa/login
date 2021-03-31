@@ -9,26 +9,33 @@ $dbconn = pg_connect($connection_string);
 if($dbconn){
     echo "oke";
 }
+if (isset($_POST['submit'])) {
+    $fname = $_POST['firstname'];
+    $lname = $_POST['lastname'];
+    $query = pg_query($db_conn, "SELECT * FROM login WHERE email='{$fname}' AND pw='{$lname}'");
+    $login_check = pg_num_rows($query);
+    if($login_check > 0){ 
+        
+        echo "Login Successfully";    
+    }else{
+        
+        echo "Invalid Details";
+    }
+}
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>PHP PostgreSQL Registration & Login Example </title>
-  <meta name="keywords" content="PHP,PostgreSQL,Insert,Login">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-<body>
-  <?php
-    $sql ="SELECT *FROM login";
-    $data = pg_query($dbconn,$sql); 
-   echo "<table>";
-while($row=pg_fetch_assoc($data)){echo "<tr>";
-echo "<td align='center' width='200'>" . $row['email'] . "</td>";
-echo "<td align='center' width='200'>" . $row['pw'] . "</td>";
-echo "</tr>";}echo "</table>";?>
-    ?>
-</div>
-</body>
+<!DOCTYPE  html>
+<html>
+    <body>
+        <h2>PostgreSQL Login Forms</h2>
+
+        <form  method="POST">
+            First name:<br>
+            <input  type="text"  name="firstname">
+            <br>
+            Last name:<br>
+            <input  type="text"  name="lastname">
+            <br><br>
+            <input  type="submit"  name="submit">
+        </form>
+    </body>
 </html>
