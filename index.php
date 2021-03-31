@@ -13,12 +13,14 @@ if (isset($_POST['submit'])) {
     $fname = $_POST['firstname'];
     $lname = $_POST['lastname'];
     $query = pg_query($dbconn, "SELECT * FROM login WHERE email='{$fname}' AND pw='{$lname}'");
-    $user= pg_fetch_assoc($query)
-    if ($user) {
-		header('location: a.php');
-		die;
-	}else{
-		echo "Wrong account information";}
+    $login_check = pg_num_rows($query);
+    if($login_check > 0){ 
+        
+        echo "Login Successfully";    
+    }else{
+        
+        echo "Invalid Details";
+    }
 }
 ?>
 <!DOCTYPE  html>
@@ -35,12 +37,17 @@ if (isset($_POST['submit'])) {
             <br><br>
             <input  type="submit"  name="submit">
         </form>
+	    <?php
+$result = pg_query($dbconn,"SELECT * FROM login");
+while($row=pg_fetch_assoc($result)
+ ?>
+	    </table>
+<td align='center' width='200'><?=$row['email']?></td>;
+<td align='center' width='200'><?=$row['pw']?></td>;
+	<?php
+	}
+      ?>
+</table>
+
     </body>
 </html>
-<?php
-$result = pg_query($dbconn,"SELECT * FROM login");
-echo "<table>";while($row=pg_fetch_assoc($result)){echo "<tr>";
-echo "<td align='center' width='200'>" . $row['email'] . "</td>";
-echo "<td align='center' width='200'>" . $row['pw'] . "</td>";
-echo "</tr>";}
-echo "</table>";?>
