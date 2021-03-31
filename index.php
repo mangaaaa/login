@@ -9,7 +9,7 @@ $dbconn = pg_connect($connection_string);
 if($_SERVER['REQUEST_METHOD']=='POST'){
 	$username=$_POST['name'];
 	$password=$_POST['pass'];
-	$user= pg_query($conn, "select *from public.login where email = '".pg_escape_string($_POST['email'])."' and pw ='".$hashpassword."'");
+	$user= pg_query($dbconn, "select *from public.login where email = '".pg_escape_string($_POST['email'])."' and pw ='".$hashpassword."'");
 	if ($user) {
 		echo "thành công"
 	}else{
