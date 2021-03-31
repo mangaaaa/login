@@ -13,8 +13,7 @@ if (isset($_POST['submit'])) {
     $fname = $_POST['firstname'];
     $lname = $_POST['lastname'];
     $query = pg_query($db_conn, "SELECT * FROM login WHERE email='{$fname}' AND pw='{$lname}'");
-    $user= pg_fetch_assoc($query)
-    if ($user) {
+    if ($query) {
 		header('location: a.php');
 		die;
 	}else{
