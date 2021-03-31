@@ -23,11 +23,12 @@ if($dbconn){
   <?php
     $sql ="SELECT *FROM login";
     $data = pg_query($dbconn,$sql); 
-    if(pg_num_rows($data) >0)
-    while($row=pg_fetch_assoc($data))
+   echo "<table>";
+while($row=pg_fetch_assoc($data)){echo "<tr>";
+echo "<td align='center' width='200'>" . $row['email'] . "</td>";
+echo "<td align='center' width='200'>" . $row['pw'] . "</td>";
+echo "</tr>";}echo "</table>";?>
     ?>
-    <td><?=$row['email']?></td>
-    <td><?=$row['pw']?></td>
 </div>
 </body>
 </html>
