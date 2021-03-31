@@ -21,7 +21,7 @@ if($dbconn){
 </head>
 <body>
   <?php
-    $sql ="SELECT *FROM public.login";
+    $sql ="SELECT *FROM login";
     $data = pg_query($dbconn,$sql); 
     if(pg_num_rows($data) >0)
     while($row=pg_fetch_assoc($data))
