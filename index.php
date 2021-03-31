@@ -15,7 +15,6 @@ if (isset($_POST['submit'])) {
     $query = pg_query($db_conn, "SELECT * FROM login WHERE email='{$fname}' AND pw='{$lname}'");
     $user= pg_fetch_assoc($query)
     if ($user) {
-		$_SESSION['user']=$user['email'];
 		header('location: a.php');
 		die;
 	}else{
