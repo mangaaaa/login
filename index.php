@@ -37,6 +37,7 @@ if (isset($_POST['submit'])) {
             <br><br>
             <input  type="submit"  name="submit">
         </form>
+    <h2>Thông tin tài khoản</h2>
 	<?php
 $result = pg_query($dbconn,"SELECT * FROM login");
 echo "<table>";
