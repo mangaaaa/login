@@ -9,9 +9,6 @@ $dbconn = pg_connect($connection_string);
 if($dbconn){
     echo "oke";
 }
-    $sql ="SELECT *FROM public.login";
-    $data = pg_query($dbconn,$sql); 
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,30 +20,14 @@ if($dbconn){
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container">
-  <h2>Login Here </h2>
-  <form method="POST">
-  
-     
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-    </div>
-    
-     
-    <div class="form-group">
-      <label for="pwd">Password:</label>
-      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-    </div>
-     
-    <input type="submit" name="submit" class="btn btn-primary" value="Submit">
-  </form>
   <?php
-if(pg_num_rows($data) >0)
-while($row=pg_fetch_assoc($data))
-  ?>
-  <td><?=$row['email']?></td>
-  <td><?=$row['pw']?></td>
+    $sql ="SELECT *FROM public.login";
+    $data = pg_query($dbconn,$sql); 
+    if(pg_num_rows($data) >0)
+    while($row=pg_fetch_assoc($data))
+    ?>
+    <td><?=$row['email']?></td>
+    <td><?=$row['pw']?></td>
 </div>
 </body>
 </html>
