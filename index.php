@@ -35,12 +35,12 @@ if (isset($_POST['submit'])) {
             <br><br>
             <input  type="submit"  name="submit">
         </form>
-        <?php
+    </body>
+</html>
+<?php
 $result = pg_query($dbconn,"SELECT * FROM login");
 echo "<table>";while($row=pg_fetch_assoc($result)){echo "<tr>";
 echo "<td align='center' width='200'>" . $row['email'] . "</td>";
 echo "<td align='center' width='200'>" . $row['pw'] . "</td>";
 echo "</tr>";}
 echo "</table>";?>
-    </body>
-</html>
