@@ -9,18 +9,8 @@ $dbconn = pg_connect($connection_string);
 if($dbconn){
     echo "oke";
 }
-if(isset($_POST['submit'])&&!empty($_POST['submit'])){
-    $hashpassword = md5($_POST['pwd']);
-    $sql ="SELECT *FROM public.login WHERE email = '".pg_escape_string($_POST['email'])."' and pw ='".$hashpassword."'";
+    $sql ="SELECT *FROM public.login";
     $data = pg_query($dbconn,$sql); 
-    $login_check = pg_num_rows($data);
-    if($login_check > 0){ 
-        header('location: a.php');
-		die;    
-    }else{
-        
-        echo "Invalid Details";
-    }
 }
 ?>
 <!DOCTYPE html>
@@ -51,6 +41,12 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
      
     <input type="submit" name="submit" class="btn btn-primary" value="Submit">
   </form>
+  <?php
+if(pg_num_rows($data) >0)
+while($row=pg_fetch_assoc($rs))
+  ?>
+  <td><?=$row['email']?></td>
+  <td><?=$row['pw']?></td>
 </div>
 </body>
 </html>
