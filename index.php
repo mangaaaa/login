@@ -41,7 +41,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
       <label for="pwd">Password:</label>
       <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pass" required>
     </div>
-    <button type="submit" class="btn btn-primary">Login</button>
+    <button type="submit" class="btn btn-primary" name ="submit>Login</button>
   </form>
 </div>
  </body>
