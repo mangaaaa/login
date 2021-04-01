@@ -6,9 +6,6 @@ $user = "ofcrelyobnaqan";
 $password = "cefb489d75ca8fef81ab3054ee3525b3af3857ebdcc77080d96834153e2a6b94"; 
 $connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password} ";
 $dbconn = pg_connect($connection_string);
-if($dbconn){
-    echo "oke";
-}
 if (isset($_POST['submit'])) {
     $fname = $_POST['firstname'];
     $lname = $_POST['lastname'];
@@ -29,10 +26,10 @@ if (isset($_POST['submit'])) {
         <h2>PostgreSQL Login Forms</h2>
 
         <form  method="POST">
-            First name:<br>
+            Email:<br>
             <input  type="text"  name="firstname">
             <br>
-            Last name:<br>
+            Password:<br>
             <input  type="text"  name="lastname">
             <br><br>
             <input  type="submit"  name="submit">
