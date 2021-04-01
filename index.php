@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
 <!DOCTYPE  html>
 <html>
     <body>
-        <h2>PostgreSQL Login Forms</h2>
+        <h2>Login Forms</h2>
 
         <form  method="POST">
             Email:<br>
